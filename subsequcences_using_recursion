@@ -1,0 +1,32 @@
+//n elements Ex:n=3
+//output= {1 2 1}, {1 2},{1 1},{1}, {2 1} ,{2} ,{1} ,{}
+
+#include<bits/stdc++.h>
+using namespace std;
+void subseqs(int ind,int n, vector<int>&ds,int arr[]){
+    if(ind==n){
+        for(auto it:ds){
+            cout<<it<<" ";
+        }
+        cout<<"\n";
+        return ;
+    }
+    
+    //logic to make a pick
+    ds.push_back(arr[ind]);
+    subseqs(ind+1,n,ds,arr);
+    ds.pop_back();
+    
+    //logic for not to make a pick
+    subseqs(ind+1,n,ds,arr);
+}
+
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    vector<int>ds;
+    subseqs(0,n,ds,arr);
+}
