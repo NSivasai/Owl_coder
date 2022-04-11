@@ -1,0 +1,40 @@
+//subsequences which equals the given sum
+
+#include<bits/stdc++.h>
+using namespace std;
+void subseqs(int sum,int ind,int n,int t, vector<int>&ds,int arr[]){
+    if(ind==n){
+        if(sum==t)
+        {
+            for(auto it:ds){
+                cout<<it<<" ";
+            }
+        }
+        cout<<"\n";
+        return ;
+    }
+    
+    //logic to make a pick
+    sum+=arr[ind];
+    ds.push_back(arr[ind]);
+    
+    subseqs(sum,ind+1,n,t,ds,arr);
+    sum-=arr[ind];
+    ds.pop_back();
+    
+    
+    //logic for not to make a pick
+    subseqs(sum,ind+1,n,t,ds,arr);
+}
+
+int main(){
+    int n;
+    cin>>n;
+    int t;cin>>t;
+    int arr[n];
+    int sum=0;
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    vector<int>ds;
+    subseqs(sum,0,n,t,ds,arr);
+}
